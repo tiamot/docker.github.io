@@ -490,32 +490,21 @@ installed both in Bash and Zsh.
 
 ### Bash
 
-Bash has [built-in support for
-completion](https://www.debian-administration.org/article/316/An_introduction_to_bash_completion_part_1){:target="_blank"
-class="_"} To activate completion for Docker commands, these files need to be
-copied or symlinked to your `bash_completion.d/` directory. For example, if you
-installed bash via [Homebrew](http://brew.sh/):
+#### Install bash-completion via Homebrew
+
+1. Install [Homebrew](http://brew.sh/) if not already installed.
+1. Use Homebrew to install bash completion with `brew install bash-completion`.
+1. After the installation, follow the instructions Homebrew displays for updating your bash profile (if you miss them during the install, you can always see them again by typing `brew info bash-completion`)
+
+#### Enable Completion for Docker
+
+To activate completion for Docker commands, you must symlink the completion scripts found inside `Docker.app` to your `bash_completion.d/` directory each linked file allows completion for a command (e.g. docker, docker-machine, docker-compose):
 
 ```bash
 etc=/Applications/Docker.app/Contents/Resources/etc
 ln -s $etc/docker.bash-completion $(brew --prefix)/etc/bash_completion.d/docker
 ln -s $etc/docker-machine.bash-completion $(brew --prefix)/etc/bash_completion.d/docker-machine
 ln -s $etc/docker-compose.bash-completion $(brew --prefix)/etc/bash_completion.d/docker-compose
-```
-
-Add the following to your `~/.bash_profile`:
-
-
-```shell
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
-```
-
-OR
-
-```shell
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-. $(brew --prefix)/etc/bash_completion
-fi
 ```
 
 ### Zsh
